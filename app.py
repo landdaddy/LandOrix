@@ -16,7 +16,7 @@ ZONING_MIN_ACRES = {
     "PAD": None
 }
 
-@st.cache_data(ttl=3600)
+    @st.cache_data(ttl=3600)
 def get_leads():
     parcels = gpd.read_file("https://maps.pinal.gov/arcgis/rest/services/Assessor/ParcelData/FeatureServer/0/query?where=1=1&outFields=*&f=geojson&resultRecordCount=50000")
     cities = gpd.read_file("https://maps.pinal.gov/arcgis/rest/services/Boundaries/Municipal_Boundaries/FeatureServer/0/query?where=1=1&outFields=*&f=geojson")
