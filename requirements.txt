@@ -1,6 +1,3 @@
-streamlit
-geopandas
-folium
-streamlit-folium
-pandas
-requests
+Flask
+gunicorn
+sqlite3
