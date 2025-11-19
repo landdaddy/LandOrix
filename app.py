@@ -18,8 +18,8 @@ ZONING_MIN_ACRES = {
 
 @st.cache_data(ttl=3600)
 def get_leads():
-    parcels = gpd.read_file("https://maps.pinal.gov/arcgis/rest/services/OpenData/Parcels/MapServer/0/query?where=1=1&outFields=*&f=geojson&resultRecordCount=50000")
-    cities = gpd.read_file("https://maps.pinal.gov/arcgis/rest/services/Boundaries/Municipal_Boundaries/MapServer/0/query?where=1=1&outFields=*&f=geojson")
+    parcels = gpd.read_file("https://maps.pinal.gov/arcgis/rest/services/Assessor/ParcelData/FeatureServer/0/query?where=1=1&outFields=*&f=geojson&resultRecordCount=50000")
+cities = gpd.read_file("https://maps.pinal.gov/arcgis/rest/services/Boundaries/Municipal_Boundaries/FeatureServer/0/query?where=1=1&outFields=*&f=geojson")
     parcels = parcels[~parcels.intersects(cities.unary_union)]
     
     parcels['acres'] = pd.to_numeric(parcels.get('ACRES', parcels.get('GIS_ACRES', 0)), errors='coerce').fillna(0)
